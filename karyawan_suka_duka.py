@@ -1,30 +1,35 @@
-print("==input karyawan suka duka==")
+nama = input("Masukkan Nama : ")
+nik = input("Masukkan NIK : ")
 
-nama = input("masukan umur: ")
-nik = int(input("masukan nik: "))
-status = input("masukan status (pegawai tetap / honor): ")
-golongan = input("masukan golongan (A/B/C): ")
+status_list = ["Tetap", "Honor"]
+golongan_list = ["A", "B", "C"]
 
-if status == "pegawai tetap":
-    print("Gaji 1.000.000")
-    if golongan == "A":
-        print("bonus golongan A +200.000")
-        print("total gaji anda 1.200.000")
-    elif golongan == "B":
-        print("bonus golongan B +400.000")
-        print("total gaji anda 1.400.000")
-    elif golongan == "C":
-        print("bonus golongan C +550.000")
-        print("total gaji anda 1.550.000")
-if status == "honor":
-    print("Gaji 750.000")
-    if golongan == "A":
-        print("bonus golongan A +150.000")
-        print("total gaji anda 900.000")
-    elif golongan == "B":
-        print("bonus golongan B +275.000")
-        print("total gaji anda 1.025.000")
-    elif golongan == "C":
-        print("bonus golongan C +480.000")
-        print("total gaji anda 1.230.000")
-else:("input tidak benar")
+gaji = {"Tetap": 1000000, "Honor": 750000}
+
+bonus = {
+    "Tetap": {"A": 200000, "B": 400000, "C": 550000},
+    "Honor": {"A": 150000, "B": 275000, "C": 480000},
+}
+
+total_gaji_tetap = 0
+total_gaji_honor = 0
+
+print(f"\nNama: {nama}")
+print(f"NIK: {nik}\n")
+
+for status in status_list:
+    print(f"Status: {status}")
+    for golongan in golongan_list:
+        total = gaji[status] + bonus[status][golongan]
+        print(f"  Golongan: {golongan}")
+        print(f"    Gaji Pokok: {gaji[status]}")
+        print(f"    Bonus: {bonus[status][golongan]}")
+        print(f"    Total Gaji: {total}\n")
+        
+        if status == "Tetap":
+            total_gaji_tetap += total
+        else:
+            total_gaji_honor += total
+
+print(f"Total keseluruhan gaji untuk status Tetap: {total_gaji_tetap}")
+print(f"Total keseluruhan gaji untuk status Honor: {total_gaji_honor}")
